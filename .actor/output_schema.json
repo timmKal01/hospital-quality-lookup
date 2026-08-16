@@ -1,0 +1,11 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Output schema of Hospital Quality Lookup",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Hospitals",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}

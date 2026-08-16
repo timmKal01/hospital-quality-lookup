@@ -1,0 +1,15 @@
+{
+    "name": "hospital-quality-lookup",
+    "version": "0.1.0",
+    "type": "module",
+    "description": "Search U.S. hospitals by name or state and get CMS overall quality star ratings via the official CMS Provider Data API.",
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "dependencies": {
+        "apify": "^3.2.6"
+    },
+    "scripts": {
+        "start": "node src/main.js"
+    }
+}
