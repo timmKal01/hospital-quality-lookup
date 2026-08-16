@@ -69,3 +69,7 @@ scraping. Public U.S. government data, refreshed quarterly by CMS.
 
 Billed per **search**, not per hospital returned — one charge whether
 the search returns 0 hospitals or 100.
+
+## Related products
+
+- [Nursing Home Quality Lookup](https://github.com/timmKal01/nursing-home-quality-lookup) — the long-term care equivalent, same CMS rating system
