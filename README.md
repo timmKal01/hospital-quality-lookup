@@ -73,3 +73,4 @@ the search returns 0 hospitals or 100.
 ## Related products
 
 - [Nursing Home Quality Lookup](https://github.com/timmKal01/nursing-home-quality-lookup) — the long-term care equivalent, same CMS rating system
+- [Home Health Agency Lookup](https://github.com/timmKal01/home-health-agency-lookup) — the in-home care equivalent, same CMS rating system
