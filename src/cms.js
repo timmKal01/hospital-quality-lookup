@@ -1,5 +1,34 @@
 const BASE_URL = 'https://data.cms.gov/provider-data/api/1/datastore/query/xubh-q36u/0';
 
+const TRANSIENT_STATUSES = new Set([429, 500, 502, 503, 504]);
+const MAX_ATTEMPTS = 4;
+
+function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+/** Retries transient failures (rate limits, upstream 5xx) instead of failing the whole run on one hiccup. */
+async function fetchWithRetry(url) {
+    let lastError;
+    for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+        let res;
+        try {
+            res = await fetch(url, { headers: { Connection: 'close' } });
+        } catch (err) {
+            lastError = err;
+            if (attempt < MAX_ATTEMPTS) await sleep(1000 * 2 ** (attempt - 1));
+            continue;
+        }
+        if (res.ok) return res;
+        if (!TRANSIENT_STATUSES.has(res.status)) {
+            throw new Error(`CMS API request failed: ${res.status} ${res.statusText}`);
+        }
+        lastError = new Error(`CMS API request failed: ${res.status} ${res.statusText}`);
+        if (attempt < MAX_ATTEMPTS) await sleep(1000 * 2 ** (attempt - 1));
+    }
+    throw lastError;
+}
+
 export async function fetchHospitals({ name, state, minRating, maxResults }) {
     const conditions = [];
     if (name) conditions.push({ property: 'facility_name', value: `%${name}%`, operator: 'like' });
@@ -14,10 +43,7 @@ export async function fetchHospitals({ name, state, minRating, maxResults }) {
     });
     url.searchParams.set('limit', String(maxResults));
 
-    const res = await fetch(url, { headers: { Connection: 'close' } });
-    if (!res.ok) {
-        throw new Error(`CMS API request failed: ${res.status} ${res.statusText}`);
-    }
+    const res = await fetchWithRetry(url);
     const body = await res.json();
 
     return (body.results ?? []).map((h) => ({
