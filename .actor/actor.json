@@ -1,7 +1,7 @@
 {
     "actorSpecification": 1,
     "name": "hospital-quality-lookup",
-    "title": "Hospital Quality Lookup — CMS Star Ratings",
+    "title": "Hospital Star Ratings Lookup: CMS Quality Data",
     "description": "Search U.S. hospitals by name or state and get their official CMS overall quality star rating, ownership type, and safety/readmission comparison counts. For patients, benefits teams, and healthcare researchers.",
     "version": "0.1",
     "meta": {
