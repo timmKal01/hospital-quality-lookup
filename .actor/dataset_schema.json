@@ -1,0 +1,88 @@
+{
+    "actorSpecification": 1,
+    "fields": {},
+    "views": {
+        "overview": {
+            "title": "Overview",
+            "transformation": {
+                "fields": [
+                    "name",
+                    "city",
+                    "state",
+                    "overallRating",
+                    "hospitalType",
+                    "ownership",
+                    "emergencyServices",
+                    "safetyMeasuresBetterThanNational",
+                    "safetyMeasuresWorseThanNational",
+                    "readmissionMeasuresBetterThanNational",
+                    "readmissionMeasuresWorseThanNational",
+                    "phone",
+                    "address",
+                    "facilityId"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "name": {
+                        "label": "Name",
+                        "format": "text"
+                    },
+                    "city": {
+                        "label": "City",
+                        "format": "text"
+                    },
+                    "state": {
+                        "label": "State",
+                        "format": "text"
+                    },
+                    "overallRating": {
+                        "label": "Overall rating",
+                        "format": "number"
+                    },
+                    "hospitalType": {
+                        "label": "Hospital type",
+                        "format": "text"
+                    },
+                    "ownership": {
+                        "label": "Ownership",
+                        "format": "text"
+                    },
+                    "emergencyServices": {
+                        "label": "Emergency services",
+                        "format": "boolean"
+                    },
+                    "safetyMeasuresBetterThanNational": {
+                        "label": "Safety measures better than national",
+                        "format": "number"
+                    },
+                    "safetyMeasuresWorseThanNational": {
+                        "label": "Safety measures worse than national",
+                        "format": "number"
+                    },
+                    "readmissionMeasuresBetterThanNational": {
+                        "label": "Readmission measures better than national",
+                        "format": "number"
+                    },
+                    "readmissionMeasuresWorseThanNational": {
+                        "label": "Readmission measures worse than national",
+                        "format": "number"
+                    },
+                    "phone": {
+                        "label": "Phone",
+                        "format": "text"
+                    },
+                    "address": {
+                        "label": "Address",
+                        "format": "text"
+                    },
+                    "facilityId": {
+                        "label": "Facility ID",
+                        "format": "text"
+                    }
+                }
+            }
+        }
+    }
+}
