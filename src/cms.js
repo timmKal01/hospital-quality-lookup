@@ -1,5 +1,9 @@
 const BASE_URL = 'https://data.cms.gov/provider-data/api/1/datastore/query/xubh-q36u/0';
 
+// Since late October 2026, data.cms.gov answers "Access Denied" (403) to requests that identify themselves only as
+// Node's default "node" user agent. Saying which tool is asking, and where to find it, gets the normal JSON back.
+const USER_AGENT = 'hospital-quality-lookup/0.1 (+https://apify.com/m_ctim/hospital-quality-lookup)';
+
 const TRANSIENT_STATUSES = new Set([429, 500, 502, 503, 504]);
 const MAX_ATTEMPTS = 4;
 
@@ -13,7 +17,7 @@ async function fetchWithRetry(url) {
     for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
         let res;
         try {
-            res = await fetch(url, { headers: { Connection: 'close' } });
+            res = await fetch(url, { headers: { 'User-Agent': USER_AGENT, Connection: 'close' } });
         } catch (err) {
             lastError = err;
             if (attempt < MAX_ATTEMPTS) await sleep(1000 * 2 ** (attempt - 1));
